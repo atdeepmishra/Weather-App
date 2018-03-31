@@ -10,4 +10,4 @@ Example of Vue.js for beginners
 
 #### H4 App Screenshots
 
-![Login](relative/path/to/img.jpg?raw=true "Title")
+![Login](WeatherApp/WeatherApp/Content/LoginScreen.png)
