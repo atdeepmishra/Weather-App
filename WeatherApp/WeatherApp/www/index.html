@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>WeatherApp</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; script-src 'self' https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js https://cdn.jsdelivr.net/vue.resource/0.7.0/vue-resource.min.js http://requirejs.org/docs/release/2.3.5/minified/require.js 'unsafe-eval'; connect-src http://nominatim.openstreetmap.org/reverse* http://maps.googleapis.com/maps/api/geocode/* http://api.wordnik.com:80/v4/words.json/randomWord/* http://icons.wxug.com/*">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+
+</head>
+<body>
+
+    <!--Login Page-->
+    <div id="app-login" v-show="loginPage">
+        <div class="header row">
+            <h2> Weather App </h2>
+        </div>
+        <div id="login" class="loginform">
+            <h1>User Login</h1>
+            <input type="text" class="logintxt" v-model="user" placeholder="username">
+            <input type="password" class="logintxt" v-model="password" placeholder="password">
+            <button v-on:click="authenticate">Sign in</button>
+            <p class="loginmessage" v-show="hasErr">{{ errMsg }} </p>
+        </div>
+        <div class="mainfooter"><p>Developed by Deep Narayan Mishra <p></p></div>
+    </div>
+
+    <!-- Selection, Query and Weather Report Page-->
+    <!-- Selection page is home page for the user where he can select various option also logout-->
+    <div id="app-weather" v-show="appWeather">
+        <img id="homeimg" v-show="queryPage || weatherPage" class="header-image" src="www/images/home1.png" @click="returnHome" />
+        <div id="selection" v-show="selectionPage">
+            <h3 class="header-home">Home</h3>
+            <img id="logoutimg" v-show="selectionPage" class="header-logout-image" src="www/images/logout4.png" @click="returnToLogin" />
+            <div class="header-image-row-border"></div>
+            <div class="centerpane">
+                <button v-on:click="getByCurLoc" class="selectBtn">My Location</button>
+                <button v-on:click="getByZipCd" class="selectBtn">By ZIP Code</button>
+                <button v-on:click="proceed" class="selectBtn">Proceed</button>
+
+            </div>
+        </div>
+        <div id="query" v-show="queryPage">
+            <h3 class="header-image-row-big"> Enter ZIP Code </h3>
+            <div class="header-image-row-border"></div>
+            <div class="centerpane-query">
+                <input type="text" class="queryInput" placeholder="zip code" v-model="zipcode">
+                <button v-on:click="getWeather" class="selectBtn"> Enter </button>
+                <p class="errmsg"> {{ errMsg }} </p>
+            </div>
+        </div>
+
+        <div id="popup">
+            <!-- Popup for error message -->
+            <transition name="modal">
+                <div class="modal-mask" v-show="noDataFoundErr">
+                    <div class="modal-container">
+                        <div class="modal-header-error">
+                            <h3 color="red">Error!!!!</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p> {{ noDataFoundErrMsg }} </p>
+
+                            <div class="modal-footer">
+                                <button class="footer-close" @click="noDataFoundErr = false">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
+
+        <div id="weather" v-show="weatherPage">
+            <h3 class="header-image-row"> Weather </h3>
+            <div class="header-image-row-border"></div>
+            <table class="weather-data-table">
+                <tbody>
+                    <tr>
+                        <td><strong>Location:</strong></td>
+                        <td><strong>{{ weatherdata.current_observation.display_location.city }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Temperature:</strong></td>
+                        <td>{{ weatherdata.current_observation.temperature_string }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weather:</strong></td>
+                        <td>{{ weatherdata.current_observation.weather }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relative Humidity:</strong></td>
+                        <td>{{ weatherdata.current_observation.relative_humidity }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pressure:</strong></td>
+                        <td>{{ weatherdata.current_observation.pressure_mb }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visibility (Miles):</strong></td>
+                        <td>{{ weatherdata.current_observation.visibility_mi }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>UV Index:</strong></td>
+                        <td>{{ weatherdata.current_observation.UV }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wind Temp:</strong></td>
+                        <td>{{ weatherdata.current_observation.wind_degrees }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wind String:</strong></td>
+                        <td>{{ weatherdata.current_observation.wind_string }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Observation Time:</strong></td>
+                        <td>{{ weatherdata.current_observation.observation_time }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>State:</strong></td>
+                        <td>{{ weatherdata.current_observation.display_location.state_name }} </td>
+                    </tr>
+                    <tr>
+                        <td><strong>ZIP Code:</strong></td>
+                        <td>{{ weatherdata.current_observation.display_location.zip }}</td>
+                    </tr>
+                    <!--  <tr>
+                        <td><strong>Sky :</strong></td>
+                        <td > <img src="{{ weatherdata.current_observation.icon_url }}" /></td>
+                    </tr> -->
+                </tbody>
+            </table>
+            <button v-show="curPage !== 0" class="prevBtn" @click="prevDayData">Prev Day</button>
+            <button v-show="curPage < selectedData.length-1" class="nextBtn" @click="nextDayData">Next Day</button>
+        </div>
+    </div>
+
+    <!-- Grid Page for Search functionality and Popup for displaying the selected row -->
+    <div id="wdatagrid" v-show="wdatagrid">
+        <img id="homeimg" class="header-image" src="www/images/home1.png" @click="returnHome" />
+        <h3 class="header-image-row-big"> Search </h3>
+        <div class="header-image-row-border"></div>
+        <div id="mygrid">
+            <input type="text" class="searchinput" v-model="searchloc" placeholder="location" />
+            <input type="text" class="searchinput" v-model="searchzip" placeholder="zip" />
+            <input type="text" class="searchinput" v-model="searchdate" placeholder="date" />
+            <input type="text" class="searchinput" v-model="searchtemp" placeholder="temp (f)" />
+            <p class="infobar">Tap the row to see full detail</p>
+            <button class="searchBtn" @click="applyFilters">Search</button>
+            <table class="weathergreed">
+                <thead>
+                    <tr>
+                        <th v-for="heading in tableHeadings">
+                            {{ heading.name }}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="row in pageData" @click="showDetails(row)">
+                        <td>
+                            {{ (row.current_observation === undefined || row.current_observation.display_location.city === undefined)? "": row.current_observation.display_location.city.trim() | bold }}
+                        </td>
+                        <td>
+                            {{ (row.current_observation === undefined || row.current_observation === undefined)? "": row.current_observation.temp_f }}
+                        </td>
+                        <td>
+                            {{ (row.current_observation === undefined || row.current_observation.display_location.zip === undefined)? "": row.current_observation.display_location.zip.trim() }}
+                        </td>
+                        <td>
+                            {{ (row.current_observation === undefined || row.current_observation.display_location.state_name === undefined)? "": row.current_observation.display_location.state_name.trim() }}
+                        </td>
+                        <td>
+                            {{ (row.current_observation === undefined || row.current_observation.observation_time_rfc822 === undefined)? "": row.current_observation.observation_time_rfc822.slice(5, 16) }}
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <label class="nodata" v-show="filteredData.length == 0"> Data Not Available </label>
+            <button class="prevBtn" v-show="filteredData.length != 0" @click="prevPage" :disabled="currentPage === 0">Previous</button>
+            <button class="nextBtn" v-show="filteredData.length != 0" @click="nextPage" :disabled="isLastPage === true">Next</button>
+            <Label class="pageLabel" v-show="filteredData.length != 0">Page No ({{ currentPage + 1 }}) [Data ({{ (currentPage + 1) * pageSize}}|{{filteredData.length }})]</Label>
+        </div>
+
+        <div id="popup">
+            <transition name="modal">
+                <div class="modal-mask" v-show="showmask">
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <h3>Weather Details</h3>
+                        </div>
+                        <div class="modal-body">
+                            <table class="weather-data-popup">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Location:</strong></td>
+                                        <td><strong>{{ weatherdata.current_observation.display_location.city }}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Temperature:</strong></td>
+                                        <td>{{ weatherdata.current_observation.temperature_string }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Weather:</strong></td>
+                                        <td>{{ weatherdata.current_observation.weather }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Relative Humidity:</strong></td>
+                                        <td>{{ weatherdata.current_observation.relative_humidity }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pressure:</strong></td>
+                                        <td>{{ weatherdata.current_observation.pressure_mb }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Visibility (Miles):</strong></td>
+                                        <td>{{ weatherdata.current_observation.visibility_mi }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>UV Index:</strong></td>
+                                        <td>{{ weatherdata.current_observation.UV }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Wind Temp:</strong></td>
+                                        <td>{{ weatherdata.current_observation.wind_degrees }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Wind String:</strong></td>
+                                        <td>{{ weatherdata.current_observation.wind_string }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Observation Time:</strong></td>
+                                        <td>{{ weatherdata.current_observation.observation_time }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>State:</strong></td>
+                                        <td>{{ weatherdata.current_observation.display_location.state_name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ZIP Code:</strong></td>
+                                        <td>{{ weatherdata.current_observation.display_location.zip }}</td>
+                                    </tr>
+                                    <!--  <tr>
+                                        <td><strong>Sky :</strong></td>
+                                        <td > <img src="{{ weatherdata.current_observation.icon_url }}" /></td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                            <div class="modal-footer">
+                                <button class="footer-close" @click="showmask = false">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/vue.resource/0.7.0/vue-resource.min.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="scripts/index.js"></script>
+
+</body>
+</html>

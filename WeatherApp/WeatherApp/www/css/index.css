@@ -1,0 +1,623 @@
+﻿* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-attachment: fixed;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    font-family: 'RobotoRegular', 'Droid Sans', 'Segoe UI', Segoe, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+}
+
+.mainfooter {
+    position: absolute;
+    left: 54%;
+}
+
+    .mainfooter p {
+        color: #30536e;
+        font-weight: bold;
+    }
+
+.header.row {
+    height: 48px;
+    color: #30536e;
+    font-size: 26px;
+    top: 0px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.container-header {
+    height: 44px;
+    width: 100%;
+    position: relative;
+}
+
+.header-image {
+    position: relative;
+    left: 2%;
+    top: 2%;
+    width: 20%;
+    height: 20%;
+}
+
+
+
+.header-image-row {
+    display: inline;
+    position: relative;
+    height: 28px;
+    color: #30536e;
+    font-size: 36px;
+    left: 30%;
+    top: 0px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+
+.header-image-row-big {
+    display: inline;
+    position: relative;
+    height: 30px;
+    color: #30536e;
+    font-size: 40px;
+    left: 16%;
+    top: 0px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.header-image-row-border {
+    position: relative;
+    width: 140%;
+    border-bottom: 2px groove #30536e;
+}
+
+.header-home {
+    display: inline;
+    position: relative;
+    height: 18px;
+    color: #30536e;
+    font-size: 44px;
+    left: 0%;
+    top: 0px;
+    width: 50%;
+    text-align: center;
+    margin-left: 34%;
+}
+
+.header-logout-image {
+    position: relative;
+    left: 14%;
+    top: 6px;
+    width: 16%;
+    height: 16%;
+}
+
+
+
+
+.header-text {
+    position: absolute;
+    left: 0%;
+    top: 0px;
+    height: 50px;
+    color: #30536e;
+    font-size: 28px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1.5px groove #30536e;
+}
+
+
+
+
+.app {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    height: 50px;
+    width: 225px;
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+    margin: 0px, 0px, 0px 0px;
+}
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position: left center;
+        padding: 75px 0px 75px 170px;
+        margin: -90px 0px 0px -198px;
+    }
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    overflow: visible;
+    padding: 0px;
+    text-align: center;
+    color: #555555;
+}
+
+.event {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 12px;
+    margin: 0px 30px;
+    padding: 2px 0px;
+}
+
+    .event.listening {
+        background-color: #333333;
+        display: block;
+    }
+
+    .event.received {
+        background-color: #4B946A;
+        display: none;
+    }
+
+@keyframes fade {
+    from {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1.0;
+    }
+}
+
+.blink {
+    animation: fade 3000ms infinite;
+    -webkit-animation: fade 3000ms infinite;
+}
+
+
+
+.block {
+    font-size: 18px;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin-left: 14%;
+    margin-right: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.logintxt {
+    width: 50%;
+    margin-left: 12px;
+}
+
+.centerpane {
+    position: absolute;
+    top: 28%;
+    left: 20%;
+}
+
+.centerpane-query {
+    position: absolute;
+    top: 34%;
+    left: 20%;
+}
+
+.myButton {
+    -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+    background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+    background-color: #f9f9f9;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #555555;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
+    width: 50%;
+    margin-top: 2%;
+    margin-right: 10%;
+    margin-left: 24%;
+    margin-bottom: 2%;
+    position: relative;
+}
+
+    .myButton:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+        background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+        background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+        background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+        background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+        background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+        background-color: #e9e9e9;
+    }
+
+    .myButton:active {
+        //position: relative;
+        //top: 1px;
+    }
+
+.weather-data {
+    border: 1.5px solid #AAA;
+    width: 130%;
+}
+    /* Make table wider */
+    .weather-data td {
+        border: 1px solid #AAA;
+    }
+/* Add borders to cells */
+
+
+.weather-data-table {
+    margin-top: 5%;
+    border-bottom: 2px groove #30536e;
+    margin-left: 2%;
+    width: 98%;
+}
+    /* Make table wider */
+    .weather-data-table td {
+        font-size: 18px;
+        color: midnightblue;
+    }
+/* Add borders to cells */
+
+
+.weathergreed {
+    margin-top: 10px;
+    margin-left: 2%;
+    border: 2px solid #AAA;
+    height: 50%;
+    width: 95%;
+}
+
+
+    .weathergreed th {
+        text-align: left;
+        border-bottom: 2px solid #AAA;
+    }
+
+
+
+    .weathergreed td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        border-bottom: 1px solid #AAA;
+    }
+
+
+.selected {
+    background: #eee;
+    color: red;
+}
+
+.prevBtn {
+    background-color: #e9e9e9;
+    height: 42px;
+    width: 100px;
+    margin-top: 25px;
+    margin-left: 10px;
+    left: 0;
+    margin-top: 25px;
+    margin-right: 10px;
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    border-radius: 6px;
+    text-transform: uppercase;
+    background: #4CAF50;
+    padding: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.nextBtn {
+    margin-top: 25px;
+    margin-right: 20px;
+    position: absolute;
+    right: 0;
+    height: 42px;
+    width: 100px;
+    font-family: "Roboto", sans-serif;
+    border-radius: 6px;
+    text-transform: uppercase;
+    background: #4CAF50;
+    padding: 15px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.pageLabel {
+    margin-top: 0px;
+    margin-right: 22px;
+    position: absolute;
+    right: 0;
+}
+
+
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    transition: opacity .3s ease;
+}
+
+.modal-container {
+    width: 74%;
+    margin: 20% auto 0;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+    margin-top: 4%;
+    color: #888888;
+}
+
+.modal-header-error h3 {
+    margin-top: 4%;
+    color: orangered;
+}
+
+.modal-body {
+    margin: 20px 0;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 1em;
+}
+
+    .form-label > .form-control {
+        margin-top: 0.5em;
+    }
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5em 1em;
+    line-height: 1.5;
+    border: 1px solid #ddd;
+}
+
+
+.modal-enter {
+    opacity: 0;
+}
+
+.modal-leave-active {
+    opacity: 0;
+}
+
+    .modal-enter .modal-container,
+    .modal-leave-active .modal-container {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+.weather-data-popup {
+    border: 1.5px solid #AAA;
+    width: 100%;
+}
+
+    .weather-data-popup td {
+        border-right: 1px solid #AAA;
+    }
+
+
+.footer-close {
+    margin-top: 10px;
+    margin-left: 30%;
+    position: relative;
+    right: 0;
+    height: 36px;
+    width: 100px;
+    font-family: "Roboto", sans-serif;
+    border-radius: 6px;
+    text-transform: uppercase;
+    background: #4CAF50;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+
+.searchBtn {
+    margin-top: 2%;
+    margin-right: 10px;
+    position: relative;
+    left: 70%;
+    height: 42px;
+    width: 100px;
+    font-family: "Roboto", sans-serif;
+    border-radius: 6px;
+    text-transform: uppercase;
+    background: #4CAF50;
+    padding: 15px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.nodata {
+    font-size: 22px;
+    position: absolute;
+    text-align: center;
+    margin-top: 8%;
+    margin-left: 28%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: oblique;
+    color: #888888;
+}
+
+
+
+.loginform {
+    position: relative;
+    top: 44px;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 70%;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+    .loginform input {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .loginform button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #4CAF50;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+
+
+        .loginform button:hover, .loginform button:active, .loginform button:focus {
+            background: #43A047;
+        }
+
+    .loginform .loginmessage {
+        margin: 15px 0 0;
+        color: #c63911;
+        font-size: 20px;
+    }
+
+
+.selectBtn {
+    font-family: "Roboto", sans-serif;
+    border-radius: 6px;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 80%;
+    height: 3%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 14px;
+}
+
+
+.queryInput {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    margin: 0 0 6px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 80%;
+}
+
+.errmsg {
+    margin: 15px 0 0;
+    color: #c63911;
+    font-size: 20px;
+}
+
+.searchinput {
+    font-family: "Roboto", sans-serif;
+    //outline: .5px groove white;
+    background: #f2f2f2;
+    border-radius: 4px;
+    border: 0;
+    margin: 2% 4% 2%;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    height: 8px;
+    width: 40%;
+}
+
+.infobar {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 6%;
+    left: 4%;
+    position: absolute;
+    color: blue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+}
