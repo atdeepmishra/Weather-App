@@ -10,6 +10,6 @@ Example of Vue.js for beginners
 App Screenshots
 ======
 
-Login Screen
+Login Screen                                                  Home Page
 
-![Login](WeatherApp/WeatherApp/Content/LoginScreen.png)
+![Login](WeatherApp/WeatherApp/Content/LoginScreen.png)       ![Login](WeatherApp/WeatherApp/Content/LoginScreen.png)
