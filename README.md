@@ -13,3 +13,15 @@ App Screenshots
 Login Screen                                                 
 
 ![Login](WeatherApp/WeatherApp/Content/LoginScreen.png)       
+
+Home                                                 
+
+![Login](WeatherApp/WeatherApp/Content/HomePage.png)  
+
+Weather Page                                                
+
+![Login](WeatherApp/WeatherApp/Content/WeatherPage.png)  
+
+Search Grid                                                 
+
+![Login](WeatherApp/WeatherApp/Content/Searchgrid.png)  
