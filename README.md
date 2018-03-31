@@ -16,12 +16,12 @@ Login Screen
 
 Home                                                 
 
-![Login](WeatherApp/WeatherApp/Content/HomePage.png)  
+![Home](WeatherApp/WeatherApp/Content/HomePage.png)  
 
 Weather Page                                                
 
-![Login](WeatherApp/WeatherApp/Content/WeatherPage.png)  
+![WeatherPage](WeatherApp/WeatherApp/Content/WeatherPage.png)  
 
 Search Grid                                                 
 
-![Login](WeatherApp/WeatherApp/Content/Searchgrid.png)  
+![Search](WeatherApp/WeatherApp/Content/Searchgrid2.png)  
