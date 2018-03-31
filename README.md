@@ -6,3 +6,8 @@ Example of Vue.js for beginners
 
 
 [index.js](https://github.com/atdeepmishra/Weather-App/blob/master/WeatherApp/WeatherApp/www/scripts/index.js): File contains interactive code for the templates
+
+
+#### H4 App Screenshots
+
+![Login](relative/path/to/img.jpg?raw=true "Title")
